@@ -1,16 +1,16 @@
+using System;
 using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class Scanner : MonoBehaviour
+    public sealed class InputSystem : MonoBehaviour
     {
+        public event Action OnSpaceEntered;
+
         public float HorizontalDirection { get; private set; }
 
         [SerializeField]
         private GameObject character;
-
-        [SerializeField]
-        private CharacterAttackInteractor characterAttackInteractor;
 
         private MoveComponent moveComponent;
 
@@ -23,7 +23,7 @@ namespace ShootEmUp
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                characterAttackInteractor.OnFlyBullet();
+                OnSpaceEntered?.Invoke();
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))

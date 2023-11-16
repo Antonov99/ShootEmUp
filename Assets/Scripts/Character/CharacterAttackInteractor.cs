@@ -4,9 +4,20 @@ namespace ShootEmUp
 {
     public sealed class CharacterAttackInteractor: MonoBehaviour
     {
-        [SerializeField] private GameObject character; 
+        [SerializeField] private GameObject character;
+        [SerializeField] private InputSystem inputSystem;
         [SerializeField] private BulletSystem _bulletSystem;
         [SerializeField] private BulletConfig _bulletConfig;
+
+        public void OnEnable()
+        {
+            inputSystem.OnSpaceEntered += OnFlyBullet;
+        }
+
+        public void OnDisable()
+        {
+            inputSystem.OnSpaceEntered -= OnFlyBullet;
+        }
 
         public void OnFlyBullet()
         {

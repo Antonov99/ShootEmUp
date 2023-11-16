@@ -9,13 +9,13 @@ namespace ShootEmUp
         private int initialCount = 50;
 
         [SerializeField] private Transform container;
-        [SerializeField] private Bullet prefab;
+        [SerializeField] private BulletController prefab;
         [SerializeField] private Transform worldTransform;
         [SerializeField] private LevelBounds levelBounds;
 
-        private readonly Queue<Bullet> m_bulletPool = new();
-        private readonly HashSet<Bullet> m_activeBullets = new();
-        private readonly List<Bullet> m_cache = new();
+        private readonly Queue<BulletController> m_bulletPool = new();
+        private readonly HashSet<BulletController> m_activeBullets = new();
+        private readonly List<BulletController> m_cache = new();
 
         private void Awake()
         {
@@ -65,13 +65,13 @@ namespace ShootEmUp
             }
         }
 
-        private void OnBulletCollision(Bullet bullet, Collision2D collision)
+        private void OnBulletCollision(BulletController bullet, Collision2D collision)
         {
             BulletUtils.DealDamage(bullet, collision.gameObject);
             RemoveBullet(bullet);
         }
 
-        private void RemoveBullet(Bullet bullet)
+        private void RemoveBullet(BulletController bullet)
         {
             if (m_activeBullets.Remove(bullet))
             {

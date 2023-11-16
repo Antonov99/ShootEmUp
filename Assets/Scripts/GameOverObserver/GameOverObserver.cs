@@ -8,12 +8,12 @@ namespace ShootEmUp
 
         private void OnEnable()
         {
-            character.GetComponent<HitPointsComponent>().hpEmpty += this.OnCharacterDeath;
+            character.GetComponent<HitPointsComponent>().hpEmpty += OnCharacterDeath;
         }
 
         private void OnDisable()
         {
-            character.GetComponent<HitPointsComponent>().hpEmpty -= this.OnCharacterDeath;
+            character.GetComponent<HitPointsComponent>().hpEmpty -= OnCharacterDeath;
         }
 
         public void OnCharacterDeath(GameObject _)
