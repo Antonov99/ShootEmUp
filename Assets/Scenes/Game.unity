@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 1134805360}
   - component: {fileID: 1134805361}
   m_Layer: 0
-  m_Name: InputManager
+  m_Name: Input
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -757,7 +757,6 @@ MonoBehaviour:
   character: {fileID: 4414282821800802397}
   _bulletSystem: {fileID: 363245577}
   _bulletConfig: {fileID: 11400000, guid: 7138ae5d32d814e0ca50c616c65ea105, type: 2}
-  _fireRequired: 0
 --- !u!1 &61006797492197339
 GameObject:
   m_ObjectHideFlags: 0

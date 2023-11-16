@@ -7,19 +7,8 @@ namespace ShootEmUp
         [SerializeField] private GameObject character; 
         [SerializeField] private BulletSystem _bulletSystem;
         [SerializeField] private BulletConfig _bulletConfig;
-        
-        public bool _fireRequired;
 
-        private void FixedUpdate()
-        {
-            if (_fireRequired)
-            {
-                OnFlyBullet();
-                _fireRequired = false;
-            }
-        }
-
-        private void OnFlyBullet()
+        public void OnFlyBullet()
         {
             var weapon = character.GetComponent<WeaponComponent>();
             _bulletSystem.FlyBulletByArgs(new BulletSystem.Args

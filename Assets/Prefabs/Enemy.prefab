@@ -211,6 +211,7 @@ MonoBehaviour:
   weaponComponent: {fileID: 5568771391735819374}
   moveAgent: {fileID: 8186052948131603766}
   countdown: 1
+  target: {fileID: 809540891661548873, guid: 9699e7e809fd44b2bbf3d30c951ecbd2, type: 3}
 --- !u!1 &2239154907127902911
 GameObject:
   m_ObjectHideFlags: 0

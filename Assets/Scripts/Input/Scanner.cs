@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class InputManager : MonoBehaviour
+    public sealed class Scanner : MonoBehaviour
     {
         public float HorizontalDirection { get; private set; }
 
@@ -23,7 +23,7 @@ namespace ShootEmUp
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                characterAttackInteractor._fireRequired = true;
+                characterAttackInteractor.OnFlyBullet();
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))
