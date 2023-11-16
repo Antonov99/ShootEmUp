@@ -6,18 +6,7 @@ namespace ShootEmUp
     public sealed class InputSystem : MonoBehaviour
     {
         public event Action OnSpaceEntered;
-
-        public float HorizontalDirection { get; private set; }
-
-        [SerializeField]
-        private GameObject character;
-
-        private MoveComponent moveComponent;
-
-        private void Awake()
-        {
-            moveComponent = character.GetComponent<MoveComponent>();
-        }
+        public event Action<Vector2> OnMove;
 
         private void Update()
         {
@@ -28,21 +17,16 @@ namespace ShootEmUp
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                HorizontalDirection = -1;
+                OnMove.Invoke(new Vector2(-1,0)* Time.fixedDeltaTime);
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {
-                HorizontalDirection = 1;
+                OnMove.Invoke(new Vector2(1, 0) * Time.fixedDeltaTime);
             }
             else
             {
-                HorizontalDirection = 0;
+                OnMove.Invoke(new Vector2(0, 0) * Time.fixedDeltaTime);
             }
-        }
-        
-        private void FixedUpdate()
-        {
-            moveComponent.MoveByRigidbodyVelocity(new Vector2(this.HorizontalDirection, 0) * Time.fixedDeltaTime);
         }
     }
 }

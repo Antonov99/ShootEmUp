@@ -521,7 +521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b55e0c0d37f64d1f835fe367d4939922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 4414282821800802397}
 --- !u!850595691 &1263964384
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -719,8 +718,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1879759789}
   - component: {fileID: 1879759790}
+  - component: {fileID: 1879759791}
   m_Layer: 0
-  m_Name: CharacterAttackInteractor
+  m_Name: CharacterController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -757,6 +757,20 @@ MonoBehaviour:
   inputSystem: {fileID: 1134805361}
   _bulletSystem: {fileID: 363245577}
   _bulletConfig: {fileID: 11400000, guid: 7138ae5d32d814e0ca50c616c65ea105, type: 2}
+--- !u!114 &1879759791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879759788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cceb7debf5a44584d5c948fd57c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 4414282821800802397}
+  inputSystem: {fileID: 1134805361}
 --- !u!1 &61006797492197339
 GameObject:
   m_ObjectHideFlags: 0
