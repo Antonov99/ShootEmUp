@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class BulletController : MonoBehaviour
+    public sealed class Bullet : MonoBehaviour
     {
-        public event Action<BulletController, Collision2D> OnCollisionEntered;
+        public event Action<Bullet> OnCollisionEntered;
 
         [NonSerialized] public bool isPlayer;
         [NonSerialized] public int damage;
@@ -18,7 +18,21 @@ namespace ShootEmUp
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            this.OnCollisionEntered?.Invoke(this, collision);
+            this.OnCollisionEntered?.Invoke(this);
+            if (!collision.gameObject.TryGetComponent(out TeamComponent team))
+            {
+                return;
+            }
+
+            if (this.isPlayer == team.IsPlayer)
+            {
+                return;
+            }
+
+            if (collision.gameObject.TryGetComponent(out HitPointsComponent hitPoints))
+            {
+                hitPoints.TakeDamage(this.damage);
+            }
         }
 
         public void SetVelocity(Vector2 velocity)
