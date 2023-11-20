@@ -5,14 +5,14 @@ namespace ShootEmUp
 {
     public sealed class InputSystem : MonoBehaviour
     {
-        public event Action OnSpaceEntered;
+        public event Action OnHeroFire;
         public event Action<Vector2> OnMove;
 
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                OnSpaceEntered?.Invoke();
+                OnHeroFire?.Invoke();
             }
 
             if (Input.GetKey(KeyCode.LeftArrow))

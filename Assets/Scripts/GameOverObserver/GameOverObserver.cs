@@ -5,6 +5,7 @@ namespace ShootEmUp
     public sealed class GameOverObserver : MonoBehaviour
     {
         [SerializeField] private GameObject character;
+        [SerializeField] private GameManager gameManager;
 
         private void OnEnable()
         {
@@ -18,8 +19,7 @@ namespace ShootEmUp
 
         public void OnCharacterDeath(GameObject _)
         {
-            Debug.Log("Game over!");
-            Time.timeScale = 0;
+            gameManager.GameOver();
         }
     }
 }

@@ -11,12 +11,12 @@ namespace ShootEmUp
 
         public void OnEnable()
         {
-            inputSystem.OnSpaceEntered += OnFlyBullet;
+            inputSystem.OnHeroFire += OnFlyBullet;
         }
 
         public void OnDisable()
         {
-            inputSystem.OnSpaceEntered -= OnFlyBullet;
+            inputSystem.OnHeroFire -= OnFlyBullet;
         }
 
         public void OnFlyBullet()

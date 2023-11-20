@@ -5,8 +5,7 @@ namespace ShootEmUp
 {
     public sealed class BulletSystem : MonoBehaviour
     {
-        [SerializeField]
-        private int initialCount = 50;
+        [SerializeField] private int initialCount = 50;
 
         [SerializeField] private Transform container;
         [SerializeField] private Bullet prefab;

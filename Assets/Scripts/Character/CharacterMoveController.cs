@@ -8,6 +8,7 @@ namespace ShootEmUp
     {
         [SerializeField] private GameObject character;
         [SerializeField] private InputSystem inputSystem;
+
         private MoveComponent moveComponent;
 
         private void Awake()
