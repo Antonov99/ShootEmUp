@@ -754,8 +754,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 4414282821800802397}
   inputSystem: {fileID: 1134805361}
-  _bulletSystem: {fileID: 363245577}
-  _bulletConfig: {fileID: 11400000, guid: 7138ae5d32d814e0ca50c616c65ea105, type: 2}
+  bulletSystem: {fileID: 363245577}
+  bulletConfig: {fileID: 11400000, guid: 7138ae5d32d814e0ca50c616c65ea105, type: 2}
 --- !u!114 &1879759791
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,12 +2,12 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class CharacterAttackController: MonoBehaviour
+    public sealed class CharacterAttackController : MonoBehaviour
     {
         [SerializeField] private GameObject character;
         [SerializeField] private InputSystem inputSystem;
-        [SerializeField] private BulletSystem _bulletSystem;
-        [SerializeField] private BulletConfig _bulletConfig;
+        [SerializeField] private BulletSystem bulletSystem;
+        [SerializeField] private BulletConfig bulletConfig;
 
         public void OnEnable()
         {
@@ -19,17 +19,17 @@ namespace ShootEmUp
             inputSystem.OnHeroFire -= OnFlyBullet;
         }
 
-        public void OnFlyBullet()
+        private void OnFlyBullet()
         {
             var weapon = character.GetComponent<WeaponComponent>();
-            _bulletSystem.FlyBulletByArgs(new BulletSystem.Args
+            bulletSystem.FlyBulletByArgs(new BulletSystem.Args
             {
                 isPlayer = true,
-                physicsLayer = (int) _bulletConfig.physicsLayer,
-                color = _bulletConfig.color,
-                damage =_bulletConfig.damage,
+                physicsLayer = (int)bulletConfig.physicsLayer,
+                color = bulletConfig.color,
+                damage = bulletConfig.damage,
                 position = weapon.Position,
-                velocity = weapon.Rotation * Vector3.up * _bulletConfig.speed
+                velocity = weapon.Rotation * Vector3.up * bulletConfig.speed
             });
         }
     }
