@@ -8,7 +8,7 @@ namespace ShootEmUp
     {
         [SerializeField] private EnemyPool enemyPool;
         
-        private readonly HashSet<GameObject> p_activeEnemies = new();
+        private readonly HashSet<GameObject> activeEnemies = new();
 
         private IEnumerator Start()
         {
@@ -18,7 +18,7 @@ namespace ShootEmUp
                 var enemy = enemyPool.SpawnEnemy();
                 if (enemy != null)
                 {
-                    if (p_activeEnemies.Add(enemy))
+                    if (activeEnemies.Add(enemy))
                     {
                         enemy.GetComponent<HitPointsComponent>().OnHpEmpty += OnDestroyed;
                     }    
@@ -28,7 +28,7 @@ namespace ShootEmUp
 
         private void OnDestroyed(GameObject enemy)
         {
-            if (p_activeEnemies.Remove(enemy))
+            if (activeEnemies.Remove(enemy))
             {
                 enemy.GetComponent<HitPointsComponent>().OnHpEmpty -= OnDestroyed;
 
