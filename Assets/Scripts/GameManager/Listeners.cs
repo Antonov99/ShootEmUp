@@ -24,5 +24,14 @@ namespace ShootEmUp
             void OnResume();
         }
 
+        public interface IGameUpdateListener : IGameListener
+        {
+            void OnUpdate(float deltaTime);
+        }
+        public interface IGameFixedUpdateListener : IGameListener
+        {
+            void OnFixedUpdate(float deltaTime);
+        }
+
     }
 }

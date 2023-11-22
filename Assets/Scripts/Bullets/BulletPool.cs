@@ -4,7 +4,11 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public class BulletPool : MonoBehaviour
+    public class BulletPool : MonoBehaviour,
+        Listeners.IGameFinishListener,
+        Listeners.IGameStartListener,
+        Listeners.IGamePauseListener,
+        Listeners.IGameResumeListener
     {
         [SerializeField] private Transform container;
         [SerializeField] private Bullet prefab;
@@ -41,6 +45,26 @@ namespace ShootEmUp
         {
             bullet.transform.SetParent(container);
             bulletPool.Enqueue(bullet);
+        }
+
+        public void OnStart()
+        {
+            enabled = true;
+        }
+
+        public void OnResume()
+        {
+            enabled = true;
+        }
+
+        public void OnFinish()
+        {
+            enabled = false;
+        }
+
+        public void OnPause()
+        {
+            enabled = false;
         }
     }
 }

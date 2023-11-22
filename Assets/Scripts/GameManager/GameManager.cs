@@ -1,79 +1,156 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ShootEmUp
 {
     public enum GameState
     {
-        None,
-        Start,
-        Finish,
-        Pause,
-        Resume
+        OFF = 0,
+        PLAYING = 1,
+        PAUSED = 2,
+        FINISHED = 3
     }
 
     public sealed class GameManager : MonoBehaviour
     {
-        [SerializeField] private GameState gameState;
+        public GameState State
+        {
+            get { return state; }
+        }
 
-        private List<Listeners.IGameListener> listeners = new();
+        [SerializeField] private GameState state;
+
+        private readonly List<Listeners.IGameListener> listeners = new();
+        private readonly List<Listeners.IGameUpdateListener> updateListeners = new();
+        private readonly List<Listeners.IGameFixedUpdateListener> fixedUpdateListeners = new();
+
+        private void Update()
+        {
+            if (state != GameState.PLAYING)
+            {
+                return;
+            }
+
+            var deltaTime = Time.deltaTime;
+            for (int i = 0, count = updateListeners.Count; i < count; i++)
+            {
+                var listener = updateListeners[i];
+                listener.OnUpdate(deltaTime);
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            if (state != GameState.PLAYING)
+            {
+                return;
+            }
+
+            var deltaTime = Time.fixedDeltaTime;
+            for (int i = 0, count = fixedUpdateListeners.Count; i < count; i++)
+            {
+                var listener = fixedUpdateListeners[i];
+                listener.OnFixedUpdate(deltaTime);
+            }
+        }
 
         public void AddListener(Listeners.IGameListener listener)
         {
-            listeners.Add(listener);
-        }
-        private void OnStart()
-        {
-            foreach (var gameListener in listeners)
+            if (listener == null)
             {
-                if (gameListener is Listeners.IGameStartListener startListener)
+                return;
+            }
+
+            listeners.Add(listener);
+
+            if (listener is Listeners.IGameUpdateListener updateListener)
+            {
+                updateListeners.Add(updateListener);
+            }
+
+            if (listener is Listeners.IGameFixedUpdateListener fixedUpdateListener)
+            {
+                fixedUpdateListeners.Add(fixedUpdateListener);
+            }
+        }
+
+
+        public void RemoveListener(Listeners.IGameListener listener)
+        {
+            if (listener == null)
+            {
+                return;
+            }
+
+            listeners.Remove(listener);
+
+            if (listener is Listeners.IGameUpdateListener updateListener)
+            {
+                updateListeners.Remove(updateListener);
+            }
+
+            if (listener is Listeners.IGameFixedUpdateListener fixedUpdateListener)
+            {
+                fixedUpdateListeners.Remove(fixedUpdateListener);
+            }
+        }
+
+        public void StartGame()
+        {
+            foreach (var listener in listeners)
+            {
+                if (listener is Listeners.IGameStartListener startListener)
                 {
                     startListener.OnStart();
                 }
             }
 
-            gameState = GameState.Start;
+            state = GameState.PLAYING;
+            Time.timeScale = 1;
         }
 
-        private void Finish()
+        public void PauseGame()
         {
-            foreach (var gameListener in listeners)
+            foreach (var listener in listeners)
             {
-                if (gameListener is Listeners.IGameFinishListener finishListener)
-                {
-                    finishListener.OnFinish();
-                }
-            }
-            gameState = GameState.Finish;
-        }
-
-        private void Pause()
-        {
-            foreach (var gameListener in listeners)
-            {
-                if (gameListener is Listeners.IGamePauseListener pauseListener)
+                if (listener is Listeners.IGamePauseListener pauseListener)
                 {
                     pauseListener.OnPause();
                 }
             }
-            gameState = GameState.Pause;
+
+            state = GameState.PAUSED;
+            Time.timeScale = 0;
         }
 
-        private void Resume()
+        public void ResumeGame()
         {
-            foreach (var gameListener in listeners)
+            foreach (var listener in listeners)
             {
-                if (gameListener is Listeners.IGameResumeListener resumeListener)
+                if (listener is Listeners.IGameResumeListener resumeListener)
                 {
                     resumeListener.OnResume();
                 }
             }
-            gameState = GameState.Resume;
+
+            state = GameState.PLAYING;
+            Time.timeScale = 1;
         }
-        public void GameOver()
+
+        public void FinishGame()
         {
+            foreach (var listener in listeners)
+            {
+                if (listener is Listeners.IGameFinishListener finishListener)
+                {
+                    finishListener.OnFinish();
+                }
+            }
+
+            state = GameState.FINISHED;
             Debug.Log("Game over!");
             Time.timeScale = 0;
         }
+
     }
 }

@@ -3,12 +3,18 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class InputSystem : MonoBehaviour
+    public sealed class InputSystem : MonoBehaviour,
+        Listeners.IGameUpdateListener
     {
         public event Action OnHeroFire;
         public event Action<Vector2> OnMove;
 
-        private void Update()
+        public void OnUpdate(float timeDelta)
+        {
+            HandleKeyboard();
+        }
+
+        private void HandleKeyboard()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -17,7 +23,7 @@ namespace ShootEmUp
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
-                OnMove.Invoke(new Vector2(-1,0)* Time.fixedDeltaTime);
+                OnMove.Invoke(new Vector2(-1, 0) * Time.fixedDeltaTime);
             }
             else if (Input.GetKey(KeyCode.RightArrow))
             {

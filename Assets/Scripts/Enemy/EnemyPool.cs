@@ -5,6 +5,8 @@ namespace ShootEmUp
 {
     public sealed class EnemyPool : MonoBehaviour
     {
+        [SerializeField] GameManager gameManager;
+
         [Header("Spawn")]
         [SerializeField] private EnemyPositions enemyPositions;
 
@@ -17,7 +19,7 @@ namespace ShootEmUp
 
         [SerializeField] private GameObject prefab;
 
-        [SerializeField] private const uint count = 6;
+        [SerializeField] private const uint count = 7;
 
         private readonly Queue<GameObject> enemyPool = new();
 
@@ -27,6 +29,11 @@ namespace ShootEmUp
             {
                 var enemy = Instantiate(prefab, container);
                 enemyPool.Enqueue(enemy);
+                var listeners = enemy.GetComponents<Listeners.IGameListener>();
+                foreach (var listener in listeners)
+                { 
+                    gameManager.AddListener(listener);
+                }
             }
         }
 
@@ -53,6 +60,7 @@ namespace ShootEmUp
         {
             enemy.transform.SetParent(container);
             enemyPool.Enqueue(enemy);
+
         }
     }
 }

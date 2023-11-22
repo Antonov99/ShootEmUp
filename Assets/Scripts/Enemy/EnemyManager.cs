@@ -4,12 +4,21 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class EnemyManager : MonoBehaviour
+    public sealed class EnemyManager :
+        MonoBehaviour,
+        Listeners.IGameFinishListener,
+        Listeners.IGameStartListener,
+        Listeners.IGamePauseListener,
+        Listeners.IGameResumeListener
     {
         [SerializeField] private EnemyPool enemyPool;
         
         private readonly HashSet<GameObject> activeEnemies = new();
 
+        private void Awake()
+        {
+            enabled = false;
+        }
         private IEnumerator Start()
         {
             while (true)
@@ -34,6 +43,26 @@ namespace ShootEmUp
 
                 enemyPool.UnspawnEnemy(enemy);
             }
+        }
+
+        public void OnStart()
+        {
+            enabled = true;
+        }
+
+        public void OnResume()
+        {
+            enabled = true;
+        }
+
+        public void OnFinish()
+        {
+            enabled = false;
+        }
+
+        public void OnPause()
+        {
+            enabled = false;
         }
     }
 }
