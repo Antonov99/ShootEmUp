@@ -13,6 +13,8 @@ namespace ShootEmUp
         [SerializeField] private GameObject pauseButton;
         [SerializeField] private GameObject resumeButton;
 
+        [SerializeField] private GameLauncher gameLauncher;
+
         public void Awake()
         {
             pauseButton.SetActive(false);
@@ -27,7 +29,7 @@ namespace ShootEmUp
         }
         public void OnFinish()
         {
-            startPanel.SetActive(true);
+            startPanel.SetActive(false);
             pauseButton.SetActive(false);
             resumeButton.SetActive(false);
         }
@@ -40,6 +42,12 @@ namespace ShootEmUp
         {
             pauseButton.SetActive(true);
             resumeButton.SetActive(false);
+        }
+
+        public void StartWithTimer()
+        {
+            startPanel.SetActive(false);
+            gameLauncher.DelayedStartGame();
         }
 
     }

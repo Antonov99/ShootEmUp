@@ -441,7 +441,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &562298203
 GameObject:
@@ -469,7 +469,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 562298203}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 15.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -502,6 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bdcdf257e0242258e7a67fe13d80e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletSystem: {fileID: 363245577}
   gameManager: {fileID: 3951702117947426124}
   enemyPositions: {fileID: 7166351703523243261}
   character: {fileID: 4414282821800802397}
@@ -604,7 +605,7 @@ RectTransform:
   - {fileID: 1390903034}
   - {fileID: 1621945992}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -860,7 +861,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!850595691 &1263964384
 LightingSettings:
@@ -1087,7 +1088,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1449759621
 MonoBehaviour:
@@ -1104,6 +1105,7 @@ MonoBehaviour:
   startPanel: {fileID: 909991138}
   pauseButton: {fileID: 1390903033}
   resumeButton: {fileID: 1621945991}
+  gameLauncher: {fileID: 3951702117947426127}
 --- !u!1 &1536551910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,9 +1252,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3951702117947426124}
-        m_TargetAssemblyTypeName: ShootEmUp.GameManager, Assembly-CSharp
-        m_MethodName: StartGame
+      - m_Target: {fileID: 1449759621}
+        m_TargetAssemblyTypeName: ShootEmUp.UIManager, Assembly-CSharp
+        m_MethodName: StartWithTimer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1463,7 +1465,7 @@ Transform:
   m_Children:
   - {fileID: 4414282821800802396}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1831741368
 GameObject:
@@ -1608,7 +1610,7 @@ Transform:
   - {fileID: 3327143300152331510}
   - {fileID: 1752465411210150465}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &231830465523707628
 Transform:
@@ -2018,6 +2020,7 @@ GameObject:
   - component: {fileID: 3951702117947426124}
   - component: {fileID: 3951702117947426126}
   - component: {fileID: 3951702117947426125}
+  - component: {fileID: 3951702117947426127}
   m_Layer: 0
   m_Name: '[GAME_SYSTEM]'
   m_TagString: Untagged
@@ -2042,7 +2045,7 @@ Transform:
   - {fileID: 363245576}
   - {fileID: 562298204}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3951702117947426123
 MonoBehaviour:
@@ -2070,6 +2073,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7177b0066bd35da4bbff434b12417158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: listeners
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[ShootEmUp.Listeners+IGameListener,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: updateListeners
+      Entry: 7
+      Data: 1|System.Collections.Generic.List`1[[ShootEmUp.Listeners+IGameUpdateListener,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: fixedUpdateListeners
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[ShootEmUp.Listeners+IGameFixedUpdateListener,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   state: 0
 --- !u!114 &3951702117947426125
 MonoBehaviour:
@@ -2101,6 +2152,20 @@ MonoBehaviour:
   - {fileID: 562298205}
   - {fileID: 363245577}
   - {fileID: 3951702117947426123}
+  - {fileID: 4852396043583267082}
+--- !u!114 &3951702117947426127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951702117947426121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82650e9560de1154d815937e23ab0d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 3951702117947426124}
 --- !u!212 &4162873433806880330
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2414,7 +2479,7 @@ Transform:
   - {fileID: 231830465523707628}
   - {fileID: 9048567252472711235}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7166351703523243261
 MonoBehaviour:
@@ -2493,7 +2558,7 @@ Transform:
   - {fileID: 5897317814060027325}
   - {fileID: 7143208560141865592}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8300918414904818790
 Transform:

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ShootEmUp
@@ -10,15 +11,11 @@ namespace ShootEmUp
         [SerializeField] private EnemyMoveAgent moveAgent;
         [SerializeField] private float countdown;
 
-        private BulletSystem _bulletSystem;
+        private BulletSystem bulletSys;
 
         private GameObject target;
         private float currentTime;
 
-        public void Awake()
-        {
-            _bulletSystem = GameObject.Find("BulletSystem").GetComponent<BulletSystem>();
-        }
 
         public void SetTarget(GameObject target)
         {
@@ -46,7 +43,7 @@ namespace ShootEmUp
             if (currentTime <= 0)
             {
                 Fire();
-                currentTime += countdown;
+                Reset();
             }
         }
 
@@ -55,7 +52,7 @@ namespace ShootEmUp
             var startPosition = weaponComponent.Position;
             var vector = (Vector2) target.transform.position - startPosition;
             var direction = vector.normalized;
-            _bulletSystem.FlyBulletByArgs(new BulletSystem.Args
+            bulletSys.FlyBulletByArgs(new BulletSystem.Args
             {
                 isPlayer = false,
                 physicsLayer = (int)PhysicsLayer.ENEMY,
@@ -64,6 +61,11 @@ namespace ShootEmUp
                 position = startPosition,
                 velocity = direction * 2.0f
             });
+        }
+
+        public void SetBulletSystem(BulletSystem bulletSystem)
+        {
+            bulletSys = bulletSystem;
         }
     }
 }

@@ -1,17 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace ShootEmUp
 {
-    public enum GameState
-    {
-        OFF = 0,
-        PLAYING = 1,
-        PAUSED = 2,
-        FINISHED = 3
-    }
-
-    public sealed class GameManager : MonoBehaviour
+    public sealed class GameManager : SerializedMonoBehaviour
     {
         public GameState State
         {
@@ -20,9 +13,9 @@ namespace ShootEmUp
 
         [SerializeField] private GameState state;
 
-        private readonly List<Listeners.IGameListener> listeners = new();
-        private readonly List<Listeners.IGameUpdateListener> updateListeners = new();
-        private readonly List<Listeners.IGameFixedUpdateListener> fixedUpdateListeners = new();
+        [SerializeField][ShowInInspector] private readonly List<Listeners.IGameListener> listeners = new();
+        [SerializeField][ShowInInspector] private readonly List<Listeners.IGameUpdateListener> updateListeners = new();
+        [SerializeField][ShowInInspector] private readonly List<Listeners.IGameFixedUpdateListener> fixedUpdateListeners = new();
 
         private void Update()
         {

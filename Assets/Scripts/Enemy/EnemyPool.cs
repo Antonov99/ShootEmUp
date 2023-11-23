@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace ShootEmUp
 {
     public sealed class EnemyPool : MonoBehaviour
     {
+        [SerializeField] private BulletSystem bulletSystem;
+
         [SerializeField] GameManager gameManager;
 
         [Header("Spawn")]
@@ -21,7 +24,7 @@ namespace ShootEmUp
 
         [SerializeField] private const uint count = 7;
 
-        private readonly Queue<GameObject> enemyPool = new();
+        [SerializeField][ShowInInspector] private readonly Queue<GameObject> enemyPool = new();
 
         private void Awake()
         {
@@ -29,11 +32,7 @@ namespace ShootEmUp
             {
                 var enemy = Instantiate(prefab, container);
                 enemyPool.Enqueue(enemy);
-                var listeners = enemy.GetComponents<Listeners.IGameListener>();
-                foreach (var listener in listeners)
-                { 
-                    gameManager.AddListener(listener);
-                }
+                enemy.GetComponent<Enemy>().Construct(gameManager, bulletSystem, character);
             }
         }
 
@@ -43,7 +42,7 @@ namespace ShootEmUp
             {
                 return null;
             }
-
+            
             enemy.transform.SetParent(worldTransform);
 
             var spawnPosition = enemyPositions.RandomSpawnPosition();
@@ -52,7 +51,6 @@ namespace ShootEmUp
             var attackPosition = enemyPositions.RandomAttackPosition();
             enemy.GetComponent<EnemyMoveAgent>().SetDestination(attackPosition.position);
 
-            enemy.GetComponent<EnemyAttackAgent>().SetTarget(character);
             return enemy;
         }
 
