@@ -62,10 +62,7 @@ sysinfo.txt
 *.app
 
 ### macOS ###
-# General
-.DS_Store
-.AppleDouble
-.LSOverride
+/__MACOSX
 
 # Crashlytics generated file
 crashlytics-build.properties
