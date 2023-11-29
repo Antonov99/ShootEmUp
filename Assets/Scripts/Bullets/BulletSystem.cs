@@ -5,7 +5,7 @@ namespace ShootEmUp
 {
     public sealed class BulletSystem : 
         MonoBehaviour,
-        Listeners.IGameFixedUpdateListener
+        GameListeners.IGameFixedUpdateListener
     {
         [SerializeField] private LevelBounds levelBounds;
 
@@ -14,7 +14,7 @@ namespace ShootEmUp
         private readonly HashSet<Bullet> activeBullets = new();
         private readonly List<Bullet> cache = new();
 
-        public void OnFixedUpdate(float timeDelta)
+        public void OnFixedUpdate(float fixedDeltaTime)
         {
             cache.Clear();
             cache.AddRange(activeBullets);

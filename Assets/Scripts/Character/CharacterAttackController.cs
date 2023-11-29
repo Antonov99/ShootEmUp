@@ -2,19 +2,22 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class CharacterAttackController : MonoBehaviour
+    public sealed class CharacterAttackController : 
+        MonoBehaviour,
+        GameListeners.IGameStartListener,
+        GameListeners.IGameFinishListener
     {
         [SerializeField] private GameObject character;
         [SerializeField] private InputSystem inputSystem;
         [SerializeField] private BulletSystem bulletSystem;
         [SerializeField] private BulletConfig bulletConfig;
-
-        public void OnEnable()
+        
+        public void OnStart()
         {
             inputSystem.OnHeroFire += OnFlyBullet;
         }
 
-        public void OnDisable()
+        public void OnFinish()
         {
             inputSystem.OnHeroFire -= OnFlyBullet;
         }

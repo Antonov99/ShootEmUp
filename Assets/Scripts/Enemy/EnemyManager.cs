@@ -1,30 +1,22 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class EnemyManager :
-        MonoBehaviour,
-        Listeners.IGameStartListener
-
+    public sealed class EnemyManager : MonoBehaviour
     {
         [SerializeField] private EnemyPool enemyPool;
-        
+
         private readonly HashSet<GameObject> activeEnemies = new();
 
-        private IEnumerator StartSpawn()
+        public void SpawnEnemy()
         {
-            while (true)
+            var enemy = enemyPool.SpawnEnemy();
+            if (enemy != null)
             {
-                yield return new WaitForSeconds(1);
-                var enemy = enemyPool.SpawnEnemy();
-                if (enemy != null)
+                if (activeEnemies.Add(enemy))
                 {
-                    if (activeEnemies.Add(enemy))
-                    {
-                        enemy.GetComponent<HitPointsComponent>().OnHpEmpty += OnDestroyed;
-                    }    
+                    enemy.GetComponent<HitPointsComponent>().OnHpEmpty += OnDestroyed;
                 }
             }
         }
@@ -37,11 +29,6 @@ namespace ShootEmUp
 
                 enemyPool.UnspawnEnemy(enemy);
             }
-        }
-
-        public void OnStart()
-        {
-            StartCoroutine(StartSpawn());
         }
     }
 }

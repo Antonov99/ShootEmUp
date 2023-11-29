@@ -2,10 +2,10 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class GameOverObserver : 
+    public sealed class CharacterDeathObserver : 
         MonoBehaviour,
-        Listeners.IGameStartListener,
-        Listeners.IGameFinishListener
+        GameListeners.IGameStartListener,
+        GameListeners.IGameFinishListener
 
     {
         [SerializeField] private GameObject character;

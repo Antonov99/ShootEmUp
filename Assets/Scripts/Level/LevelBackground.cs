@@ -1,11 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace ShootEmUp
 {
     public sealed class LevelBackground : 
         MonoBehaviour,
-        Listeners.IGameFixedUpdateListener
+        GameListeners.IGameFixedUpdateListener
     {
         private float startPositionY;
 
@@ -19,20 +20,20 @@ namespace ShootEmUp
 
         private Transform myTransform;
 
-        [SerializeField] private Params m_params;
+        [FormerlySerializedAs("m_params")] [SerializeField] private Params @params;
 
         private void Awake()
         {
-            startPositionY = m_params.m_startPositionY;
-            endPositionY = m_params.m_endPositionY;
-            movingSpeedY = m_params.m_movingSpeedY;
+            startPositionY = @params.startPositionY;
+            endPositionY = @params.endPositionY;
+            movingSpeedY = @params.movingSpeedY;
             myTransform = transform;
             var position = myTransform.position;
             positionX = position.x;
             positionZ = position.z;
         }
 
-        public void OnFixedUpdate(float timeDelta)
+        public void OnFixedUpdate(float fixedDeltaTime)
         {
             if (myTransform.position.y <= endPositionY)
             {
@@ -53,11 +54,11 @@ namespace ShootEmUp
         [Serializable]
         public sealed class Params
         {
-            [SerializeField] public float m_startPositionY;
+            [FormerlySerializedAs("m_startPositionY")] [SerializeField] public float startPositionY;
 
-            [SerializeField] public float m_endPositionY;
+            [FormerlySerializedAs("m_endPositionY")] [SerializeField] public float endPositionY;
 
-            [SerializeField] public float m_movingSpeedY;
+            [FormerlySerializedAs("m_movingSpeedY")] [SerializeField] public float movingSpeedY;
         }
     }
 }

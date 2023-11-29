@@ -5,7 +5,7 @@ namespace ShootEmUp
 {
     public sealed class EnemyAttackAgent : 
         MonoBehaviour,
-        Listeners.IGameFixedUpdateListener
+        GameListeners.IGameFixedUpdateListener
     {
         [SerializeField] private WeaponComponent weaponComponent;
         [SerializeField] private EnemyMoveAgent moveAgent;
@@ -27,7 +27,7 @@ namespace ShootEmUp
             currentTime = countdown;
         }
 
-        public void OnFixedUpdate(float timeDelta)
+        public void OnFixedUpdate(float fixedDeltaTime)
         {
             if (!moveAgent.IsReached)
             {

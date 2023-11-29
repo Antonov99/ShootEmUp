@@ -4,7 +4,7 @@ namespace ShootEmUp
 {
     public sealed class EnemyMoveAgent : 
         MonoBehaviour,
-        Listeners.IGameFixedUpdateListener
+        GameListeners.IGameFixedUpdateListener
     {
         public bool IsReached
         {
@@ -23,7 +23,7 @@ namespace ShootEmUp
             isReached = false;
         }
 
-        public void OnFixedUpdate(float timeDelta)
+        public void OnFixedUpdate(float fixedDeltaTime)
         {
             if (isReached)
             {

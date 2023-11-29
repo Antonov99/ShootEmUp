@@ -5,10 +5,10 @@ using UnityEngine;
 namespace ShootEmUp
 {
     public class BulletPool : MonoBehaviour,
-        Listeners.IGameFinishListener,
-        Listeners.IGameStartListener,
-        Listeners.IGamePauseListener,
-        Listeners.IGameResumeListener
+        GameListeners.IGameFinishListener,
+        GameListeners.IGameStartListener,
+        GameListeners.IGamePauseListener,
+        GameListeners.IGameResumeListener
     {
         [SerializeField] private Transform container;
         [SerializeField] private Bullet prefab;

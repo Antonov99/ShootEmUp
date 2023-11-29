@@ -13,7 +13,7 @@ namespace ShootEmUp
 
             foreach (var gameListener in monoBehaviours)
             {
-                var listeners = gameListener.GetComponents<Listeners.IGameListener>();
+                var listeners = gameListener.GetComponents<GameListeners.IGameListener>();
                 foreach (var listener in listeners)
                 {
                     manager.AddListener(listener);

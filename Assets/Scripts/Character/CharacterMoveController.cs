@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ShootEmUp
 {
-    public class CharacterMoveController : MonoBehaviour
+    public class CharacterMoveController : 
+        MonoBehaviour,
+        GameListeners.IGameStartListener,
+        GameListeners.IGameFinishListener
     {
         [SerializeField] private GameObject character;
         [SerializeField] private InputSystem inputSystem;
@@ -16,17 +17,17 @@ namespace ShootEmUp
             moveComponent = character.GetComponent<MoveComponent>();
         }
 
-        public void OnEnable()
+        public void OnStart()
         {
             inputSystem.OnMove += OnMove;
         }
 
-        public void OnDisable()
+        public void OnFinish()
         {
             inputSystem.OnMove -= OnMove;
         }
 
-        public void OnMove(Vector2 pos)
+        private void OnMove(Vector2 pos)
         {
             moveComponent.MoveByRigidbodyVelocity(pos);
         }
