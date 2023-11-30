@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 namespace ShootEmUp
 {
@@ -8,9 +9,15 @@ namespace ShootEmUp
         GameListeners.IGameFinishListener
     {
         [SerializeField] private GameObject character;
-        [SerializeField] private InputSystem inputSystem;
+        private InputSystem inputSystem;
 
         private MoveComponent moveComponent;
+
+        [Inject]
+        public void Construct(InputSystem _inputSystem)
+        {
+            inputSystem = _inputSystem;
+        }
 
         private void Awake()
         {
