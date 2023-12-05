@@ -14,9 +14,9 @@ namespace ShootEmUp
         private MoveComponent moveComponent;
 
         [Inject]
-        public void Construct(InputSystem _inputSystem)
+        public void Construct(InputSystem inputSystem)
         {
-            inputSystem = _inputSystem;
+            this.inputSystem = inputSystem;
         }
 
         private void Awake()

@@ -1,18 +1,19 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace ShootEmUp
 {
-    public sealed class InputSystem : MonoBehaviour,
-        GameListeners.IGameUpdateListener
+    public sealed class InputSystem : ITickable
     {
         public event Action OnHeroFire;
         public event Action<Vector2> OnMove;
 
-        public void OnUpdate(float timeDelta)
+        public void Tick()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
+                Debug.Log("g");
                 OnHeroFire?.Invoke();
             }
             
