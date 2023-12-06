@@ -37,7 +37,6 @@ namespace ShootEmUp
             {
                 bullet = Instantiate(prefab, worldTransform);
             }
-
             return bullet;
         }
 

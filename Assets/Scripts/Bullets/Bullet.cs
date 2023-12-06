@@ -26,7 +26,7 @@ namespace ShootEmUp
             {
                 return;
             }
-
+            
             if (collision.gameObject.TryGetComponent(out HitPointsComponent hitPoints))
             {
                 hitPoints.TakeDamage(damage);

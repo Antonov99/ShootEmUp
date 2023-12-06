@@ -1,20 +1,20 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace ShootEmUp
 {
-    public sealed class BulletSystem : 
-        MonoBehaviour,
-        GameListeners.IGameFixedUpdateListener
+    [Serializable]
+    public sealed class BulletSystem : ITickable
     {
-        [SerializeField] private LevelBounds levelBounds;
-
-        [SerializeField] private BulletPool bulletPool;
+        [field:SerializeField] private LevelBounds levelBounds;
+        [field:SerializeField] private BulletPool bulletPool;
 
         private readonly HashSet<Bullet> activeBullets = new();
         private readonly List<Bullet> cache = new();
 
-        public void OnFixedUpdate(float fixedDeltaTime)
+        public void Tick()
         {
             cache.Clear();
             cache.AddRange(activeBullets);
@@ -39,7 +39,7 @@ namespace ShootEmUp
             bullet.damage = args.damage;
             bullet.isPlayer = args.isPlayer;
             bullet.SetVelocity(args.velocity);
-
+            
             if (activeBullets.Add(bullet))
             {
                 bullet.OnCollisionEntered += RemoveBullet;

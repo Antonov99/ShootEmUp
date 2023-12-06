@@ -305,7 +305,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 363245576}
-  - component: {fileID: 363245577}
   - component: {fileID: 363245578}
   m_Layer: 0
   m_Name: BulletSystem
@@ -328,22 +327,8 @@ Transform:
   m_Children:
   - {fileID: 1831741369}
   m_Father: {fileID: 3951702117947426122}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &363245577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 363245575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37bd15923a144ffbab0333dc6e74e641, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelBounds: {fileID: 2572952653776768186}
-  bulletPool: {fileID: 363245578}
 --- !u!114 &363245578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -389,8 +374,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18a9e3e48f956c4f9c25170a056d0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterMoveController: {fileID: 1879759791}
-  characterAttackController: {fileID: 1879759790}
+  playerService:
+    character: {fileID: 4414282821800802397}
+  bulletSystem:
+    levelBounds: {fileID: 2572952653776768186}
+    bulletPool: {fileID: 363245578}
+  bulletConfig: {fileID: 11400000, guid: 7138ae5d32d814e0ca50c616c65ea105, type: 2}
 --- !u!114 &393425221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,7 +544,7 @@ Transform:
   m_Children:
   - {fileID: 178513672}
   m_Father: {fileID: 3951702117947426122}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &562298205
 MonoBehaviour:
@@ -582,7 +571,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bdcdf257e0242258e7a67fe13d80e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSystem: {fileID: 363245577}
+  bulletSystem:
+    levelBounds: {fileID: 2572952653776768186}
+    bulletPool: {fileID: 363245578}
   gameManager: {fileID: 3951702117947426124}
   enemyPositions: {fileID: 7166351703523243261}
   character: {fileID: 4414282821800802397}
@@ -801,37 +792,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9048567252472711235}
   m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1134805359
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1134805360}
-  m_Layer: 0
-  m_Name: InputSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1134805360
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134805359}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3951702117947426122}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1141491174
 GameObject:
@@ -1302,19 +1262,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1556433676}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1449759621}
-        m_TargetAssemblyTypeName: ShootEmUp.UIManager, Assembly-CSharp
-        m_MethodName: StartWithTimer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1556433676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1549,67 +1497,6 @@ Transform:
   m_Father: {fileID: 363245576}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1879759788
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1879759789}
-  - component: {fileID: 1879759791}
-  - component: {fileID: 1879759790}
-  m_Layer: 0
-  m_Name: CharacterController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1879759789
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1879759788}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3951702117947426122}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1879759790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1879759788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c57ed31af8d94ec3b11df7e2b588d40f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character: {fileID: 4414282821800802397}
-  bulletSystem: {fileID: 363245577}
-  bulletConfig: {fileID: 11400000, guid: 7138ae5d32d814e0ca50c616c65ea105, type: 2}
---- !u!114 &1879759791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1879759788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 932cceb7debf5a44584d5c948fd57c00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character: {fileID: 4414282821800802397}
 --- !u!1 &61006797492197339
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,8 +1976,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1879759789}
-  - {fileID: 1134805360}
   - {fileID: 363245576}
   - {fileID: 562298204}
   m_Father: {fileID: 0}
@@ -2211,11 +2096,8 @@ MonoBehaviour:
   monoBehaviours:
   - {fileID: 1449759621}
   - {fileID: 562298205}
-  - {fileID: 363245577}
   - {fileID: 3951702117947426123}
   - {fileID: 4852396043583267082}
-  - {fileID: 1879759790}
-  - {fileID: 1879759791}
 --- !u!114 &3951702117947426127
 MonoBehaviour:
   m_ObjectHideFlags: 0

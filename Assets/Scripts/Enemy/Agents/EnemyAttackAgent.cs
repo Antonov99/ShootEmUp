@@ -11,7 +11,7 @@ namespace ShootEmUp
         [SerializeField] private EnemyMoveAgent moveAgent;
         [SerializeField] private float countdown;
 
-        private BulletSystem bulletSys;
+        private BulletSystem bulletSystem;
 
         private GameObject target;
         private float currentTime;
@@ -52,7 +52,7 @@ namespace ShootEmUp
             var startPosition = weaponComponent.Position;
             var vector = (Vector2) target.transform.position - startPosition;
             var direction = vector.normalized;
-            bulletSys.FlyBulletByArgs(new BulletSystem.Args
+            bulletSystem.FlyBulletByArgs(new BulletSystem.Args
             {
                 isPlayer = false,
                 physicsLayer = (int)PhysicsLayer.ENEMY,
@@ -65,7 +65,7 @@ namespace ShootEmUp
 
         public void SetBulletSystem(BulletSystem bulletSystem)
         {
-            bulletSys = bulletSystem;
+            this.bulletSystem = bulletSystem;
         }
     }
 }

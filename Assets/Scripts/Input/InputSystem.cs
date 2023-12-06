@@ -13,7 +13,6 @@ namespace ShootEmUp
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("g");
                 OnHeroFire?.Invoke();
             }
             

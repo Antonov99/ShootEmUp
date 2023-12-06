@@ -1,36 +1,46 @@
+using System;
 using UnityEngine;
 using Zenject;
 
 namespace ShootEmUp
 {
-    public sealed class CharacterAttackController : 
-        MonoBehaviour,
-        GameListeners.IGameStartListener,
-        GameListeners.IGameFinishListener
+    public sealed class CharacterAttackController : IInitializable, IDisposable
     {
-        [SerializeField] private GameObject character;
-        [SerializeField] private BulletSystem bulletSystem;
-        [SerializeField] private BulletConfig bulletConfig;
         private InputSystem inputSystem;
+        private BulletSystem bulletSystem;
+        private BulletConfig bulletConfig;
+        
+        private GameObject character;
         
         [Inject]
-        public void Construct(InputSystem inputSystem)
+        public void Construct(
+            InputSystem inputSystem, 
+            BulletConfig bulletConfig, 
+            BulletSystem bulletSystem, 
+            PlayerService playerService)
         {
             this.inputSystem = inputSystem;
+            this.bulletConfig = bulletConfig;
+            this.bulletSystem = bulletSystem;
+            character = playerService.Character;
         }
         
-        public void OnStart()
+        public void Initialize()
         {
             inputSystem.OnHeroFire += OnFlyBullet;
         }
 
-        public void OnFinish()
+        public void Dispose()
         {
             inputSystem.OnHeroFire -= OnFlyBullet;
         }
 
         private void OnFlyBullet()
         {
+            Debug.Log(bulletConfig.physicsLayer);
+            Debug.Log(bulletConfig.color);
+            Debug.Log(bulletConfig.damage);
+            Debug.Log(bulletConfig.speed);
             var weapon = character.GetComponent<WeaponComponent>();
             bulletSystem.FlyBulletByArgs(new BulletSystem.Args
             {

@@ -1,35 +1,31 @@
+using System;
 using UnityEngine;
 using Zenject;
 
 namespace ShootEmUp
 {
-    public class CharacterMoveController : 
-        MonoBehaviour,
-        GameListeners.IGameStartListener,
-        GameListeners.IGameFinishListener
+    public class CharacterMoveController : IInitializable, IDisposable
+
     {
-        [SerializeField] private GameObject character;
+        private GameObject character;
         private InputSystem inputSystem;
 
         private MoveComponent moveComponent;
 
         [Inject]
-        public void Construct(InputSystem inputSystem)
+        private void Construct(InputSystem inputSystem, PlayerService playerService)
         {
             this.inputSystem = inputSystem;
+            character = playerService.Character;
         }
 
-        private void Awake()
+        public void Initialize()
         {
             moveComponent = character.GetComponent<MoveComponent>();
-        }
-
-        public void OnStart()
-        {
             inputSystem.OnMove += OnMove;
         }
 
-        public void OnFinish()
+        public void Dispose()
         {
             inputSystem.OnMove -= OnMove;
         }
