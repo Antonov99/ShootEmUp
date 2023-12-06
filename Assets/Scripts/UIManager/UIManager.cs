@@ -1,42 +1,40 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ShootEmUp
 {
-    public class UIManager : 
-        MonoBehaviour,
-        GameListeners.IGameStartListener,
-        GameListeners.IGameFinishListener,
-        GameListeners.IGamePauseListener,
-        GameListeners.IGameResumeListener
+    public class UIManager : MonoBehaviour
     {
-        [SerializeField] private GameObject pauseButton;
-        [SerializeField] private GameObject resumeButton;
+        [SerializeField] private Button pauseButton;
+        [SerializeField] private Button resumeButton;
 
         public void Awake()
         {
-            pauseButton.SetActive(false);
-            resumeButton.SetActive(false);
+            pauseButton.onClick.AddListener(OnPause);
+            resumeButton.onClick.AddListener(OnResume);
+            pauseButton.gameObject.SetActive(false);
+            resumeButton.gameObject.SetActive(false);
         }
 
-        public void OnStart()
+        public void Start()
         {
-            pauseButton.SetActive(true);
-            resumeButton.SetActive(false);
+            pauseButton.gameObject.SetActive(true);
+            resumeButton.gameObject.SetActive(false);
         }
-        public void OnFinish()
+        public void OnDisable()
         {
-            pauseButton.SetActive(false);
-            resumeButton.SetActive(false);
+            pauseButton.gameObject.SetActive(false);
+            resumeButton.gameObject.SetActive(false);
         }
         public void OnPause()
         {
-            pauseButton.SetActive(false);
-            resumeButton.SetActive(true);
+            pauseButton.gameObject.SetActive(false);
+            resumeButton.gameObject.SetActive(true);
         }
         public void OnResume()
         {
-            pauseButton.SetActive(true);
-            resumeButton.SetActive(false);
+            pauseButton.gameObject.SetActive(true);
+            resumeButton.gameObject.SetActive(false);
         }
     }
 }

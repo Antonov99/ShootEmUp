@@ -37,10 +37,6 @@ namespace ShootEmUp
 
         private void OnFlyBullet()
         {
-            Debug.Log(bulletConfig.physicsLayer);
-            Debug.Log(bulletConfig.color);
-            Debug.Log(bulletConfig.damage);
-            Debug.Log(bulletConfig.speed);
             var weapon = character.GetComponent<WeaponComponent>();
             bulletSystem.FlyBulletByArgs(new BulletSystem.Args
             {

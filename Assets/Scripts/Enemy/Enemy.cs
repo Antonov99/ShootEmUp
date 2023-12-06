@@ -11,11 +11,6 @@ namespace ShootEmUp
         {
             enemyAttackAgent.SetBulletSystem(bulletSystem);
             enemyAttackAgent.SetTarget(target);
-            var listeners = GetComponents<GameListeners.IGameListener>();
-            foreach (var listener in listeners)
-            {
-                gameManager.AddListener(listener);
-            }
         }
     }
 }

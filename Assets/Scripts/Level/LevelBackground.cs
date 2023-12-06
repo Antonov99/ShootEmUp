@@ -5,8 +5,7 @@ using UnityEngine.Serialization;
 namespace ShootEmUp
 {
     public sealed class LevelBackground : 
-        MonoBehaviour,
-        GameListeners.IGameFixedUpdateListener
+        MonoBehaviour
     {
         private float startPositionY;
 
@@ -33,7 +32,7 @@ namespace ShootEmUp
             positionZ = position.z;
         }
 
-        public void OnFixedUpdate(float fixedDeltaTime)
+        public void FixedUpdate()
         {
             if (myTransform.position.y <= endPositionY)
             {

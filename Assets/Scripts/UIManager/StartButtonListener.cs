@@ -1,21 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace ShootEmUp
 {
-    public class StartButtonListener: MonoBehaviour
+    [Serializable]
+    public class StartButtonListener: IInitializable
     {
-        [SerializeField] private GameLauncher gameLauncher;
-        [SerializeField] private Button startButton;
+        private GameManager gameManager;
+        [field:SerializeField] private Button startButton;
 
-        private void Awake()
+        [Inject]
+        public void Constructor(GameManager gameManager)
+        {
+            this.gameManager = gameManager;
+        }
+
+        public void Initialize()
         {
             startButton.onClick.AddListener(Launch);
         }
 
         private void Launch()
         {
-            gameLauncher.DelayedStartGame();
+            gameManager.StartGame();
             startButton.onClick.RemoveListener(Launch);
             
             startButton.gameObject.SetActive(false);

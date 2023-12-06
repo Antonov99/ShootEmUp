@@ -1,27 +1,32 @@
+using System;
 using UnityEngine;
+using Zenject;
 
 namespace ShootEmUp
 {
-    public sealed class CharacterDeathObserver : 
-        MonoBehaviour,
-        GameListeners.IGameStartListener,
-        GameListeners.IGameFinishListener
-
+    public sealed class CharacterDeathObserver : IInitializable,IDisposable
     {
-        [SerializeField] private GameObject character;
-        [SerializeField] private GameManager gameManager;
+        private PlayerService playerService;
+        private GameManager gameManager;
 
-        public void OnStart()
+        [Inject]
+        public void Construct(PlayerService playerService,GameManager gameManager)
         {
-            character.GetComponent<HitPointsComponent>().OnHpEmpty += OnCharacterDeath;
+            this.playerService = playerService;
+            this.gameManager = gameManager;
         }
 
-        public void OnFinish()
+        public void Initialize()
         {
-            character.GetComponent<HitPointsComponent>().OnHpEmpty -= OnCharacterDeath;
+            playerService.Character.GetComponent<HitPointsComponent>().OnHpEmpty += OnCharacterDeath;
         }
 
-        public void OnCharacterDeath(GameObject _)
+        public void Dispose()
+        {
+            playerService.Character.GetComponent<HitPointsComponent>().OnHpEmpty -= OnCharacterDeath;
+        }
+
+        private void OnCharacterDeath(GameObject _)
         {
             gameManager.FinishGame();
         }

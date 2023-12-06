@@ -380,6 +380,8 @@ MonoBehaviour:
     levelBounds: {fileID: 2572952653776768186}
     bulletPool: {fileID: 363245578}
   bulletConfig: {fileID: 11400000, guid: 7138ae5d32d814e0ca50c616c65ea105, type: 2}
+  startButtonListener:
+    startButton: {fileID: 1556433675}
 --- !u!114 &393425221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,7 +576,6 @@ MonoBehaviour:
   bulletSystem:
     levelBounds: {fileID: 2572952653776768186}
     bulletPool: {fileID: 363245578}
-  gameManager: {fileID: 3951702117947426124}
   enemyPositions: {fileID: 7166351703523243261}
   character: {fileID: 4414282821800802397}
   worldTransform: {fileID: 1683128698}
@@ -1005,19 +1006,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1390903036}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3951702117947426124}
-        m_TargetAssemblyTypeName: ShootEmUp.GameManager, Assembly-CSharp
-        m_MethodName: PauseGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1390903036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1066,7 +1055,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1449759620}
   - component: {fileID: 1449759621}
-  - component: {fileID: 1449759622}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -1101,22 +1089,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43b08f773b2284842afb095386366cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseButton: {fileID: 1390903033}
-  resumeButton: {fileID: 1621945991}
---- !u!114 &1449759622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1449759618}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f84ae7dd8c1c4eb689ec03a907d16097, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameLauncher: {fileID: 3951702117947426127}
-  startButton: {fileID: 1556433675}
+  pauseButton: {fileID: 1390903035}
+  resumeButton: {fileID: 1621945993}
 --- !u!1 &1536551910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,19 +1357,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1621945994}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3951702117947426124}
-        m_TargetAssemblyTypeName: ShootEmUp.GameManager, Assembly-CSharp
-        m_MethodName: ResumeGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1621945994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1952,11 +1914,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3951702117947426122}
-  - component: {fileID: 3951702117947426123}
-  - component: {fileID: 3951702117947426124}
-  - component: {fileID: 3951702117947426126}
-  - component: {fileID: 3951702117947426125}
-  - component: {fileID: 3951702117947426127}
   m_Layer: 0
   m_Name: '[GAME_SYSTEM]'
   m_TagString: Untagged
@@ -1981,136 +1938,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3951702117947426123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3951702117947426121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 697fe7ba192e484db495320b9c01bcd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character: {fileID: 4414282821800802397}
-  gameManager: {fileID: 3951702117947426124}
---- !u!114 &3951702117947426124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3951702117947426121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7177b0066bd35da4bbff434b12417158, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  serializationData:
-    SerializedFormat: 2
-    SerializedBytes: 
-    ReferencedUnityObjects: []
-    SerializedBytesString: 
-    Prefab: {fileID: 0}
-    PrefabModificationsReferencedUnityObjects: []
-    PrefabModifications: []
-    SerializationNodes:
-    - Name: listeners
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[ShootEmUp.GameListeners+IGameListener,
-        Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: fixedUpdateListeners
-      Entry: 7
-      Data: 1|System.Collections.Generic.List`1[[ShootEmUp.GameListeners+IGameFixedUpdateListener,
-        Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: updateListeners
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[ShootEmUp.GameListeners+IGameUpdateListener,
-        Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: lateUpdateListeners
-      Entry: 7
-      Data: 3|System.Collections.Generic.List`1[[ShootEmUp.GameListeners+IGameLateUpdateListener,
-        Assembly-CSharp]], mscorlib
-    - Name: 
-      Entry: 12
-      Data: 0
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-  state: 0
---- !u!114 &3951702117947426125
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3951702117947426121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dec220e702569e24e99b53438703b943, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3951702117947426126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3951702117947426121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60db3c41ac2cf0d4cb631e7ccb747b4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monoBehaviours:
-  - {fileID: 1449759621}
-  - {fileID: 562298205}
-  - {fileID: 3951702117947426123}
-  - {fileID: 4852396043583267082}
---- !u!114 &3951702117947426127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3951702117947426121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82650e9560de1154d815937e23ab0d5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 3951702117947426124}
 --- !u!212 &4162873433806880330
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -3,20 +3,17 @@ using UnityEngine;
 
 namespace ShootEmUp
 {
-    public class EnemyCooldownSpawner :
-        MonoBehaviour,
-        GameListeners.IGameStartListener,
-        GameListeners.IGameFinishListener
+    public class EnemyCooldownSpawner : MonoBehaviour
     {
         [SerializeField] private EnemyManager enemyManager;
         [SerializeField] private float countdown;
 
-        public void OnStart()
+        public void OnEnable()
         {
             StartCoroutine(nameof(StartSpawn));
         }
 
-        public void OnFinish()
+        public void OnDisable()
         {
             StopCoroutine(nameof(StartSpawn));
         }
