@@ -374,14 +374,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18a9e3e48f956c4f9c25170a056d0d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startButton: {fileID: 1556433675}
   playerService:
     character: {fileID: 4414282821800802397}
   bulletSystem:
     levelBounds: {fileID: 2572952653776768186}
     bulletPool: {fileID: 363245578}
   bulletConfig: {fileID: 11400000, guid: 7138ae5d32d814e0ca50c616c65ea105, type: 2}
-  startButtonListener:
-    startButton: {fileID: 1556433675}
 --- !u!114 &393425221
 MonoBehaviour:
   m_ObjectHideFlags: 0
