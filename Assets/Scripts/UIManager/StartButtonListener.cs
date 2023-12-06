@@ -6,15 +6,16 @@ using Zenject;
 namespace ShootEmUp
 {
     [Serializable]
-    public class StartButtonListener: IInitializable
+    public sealed class StartButtonListener: IInitializable, IDisposable
     {
         private GameManager gameManager;
-        [field:SerializeField] private Button startButton;
+        private Button startButton;
 
         [Inject]
-        public void Constructor(GameManager gameManager)
+        public void Constructor(GameManager gameManager, Button startButton)
         {
             this.gameManager = gameManager;
+            this.startButton = startButton;
         }
 
         public void Initialize()
@@ -24,10 +25,14 @@ namespace ShootEmUp
 
         private void Launch()
         {
-            gameManager.StartGame();
             startButton.onClick.RemoveListener(Launch);
-            
             startButton.gameObject.SetActive(false);
+            gameManager.StartGame();
+        }
+
+        public void Dispose()
+        {
+            startButton.onClick.RemoveListener(Launch);
         }
     }
 }

@@ -1,22 +1,17 @@
-using System;
 using UnityEngine;
 
 namespace ShootEmUp
 {
-    public sealed class EnemyAttackAgent : 
-        MonoBehaviour,
-        GameListeners.IGameFixedUpdateListener
+    public sealed class EnemyAttackAgent : MonoBehaviour
     {
         [SerializeField] private WeaponComponent weaponComponent;
         [SerializeField] private EnemyMoveAgent moveAgent;
         [SerializeField] private float countdown;
 
         private BulletSystem bulletSystem;
-
         private GameObject target;
         private float currentTime;
-
-
+        
         public void SetTarget(GameObject target)
         {
             this.target = target;
@@ -27,7 +22,7 @@ namespace ShootEmUp
             currentTime = countdown;
         }
 
-        public void OnFixedUpdate(float fixedDeltaTime)
+        public void FixedUpdate()
         {
             if (!moveAgent.IsReached)
             {

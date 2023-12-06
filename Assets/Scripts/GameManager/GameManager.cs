@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ShootEmUp
@@ -11,7 +10,8 @@ namespace ShootEmUp
 
         public void StartGame()
         {
-            Debug.Log("d");
+            state = GameState.PLAYING;
+            Debug.Log("Start");
             Time.timeScale = 1f;
         }
 

@@ -1,15 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace ShootEmUp
 {
     public class GameInstaller : MonoInstaller
     {
+        [SerializeField] private Button startButton;
         [SerializeField] private PlayerService playerService;
         [SerializeField] private BulletSystem bulletSystem;
         [SerializeField] private BulletConfig bulletConfig;
-        [SerializeField] private StartButtonListener startButtonListener;
-        
         
         public override void InstallBindings()
         {
@@ -35,7 +35,7 @@ namespace ShootEmUp
         private void GameManagerInstaller()
         {
             Container.Bind<GameManager>().AsSingle().NonLazy();
-            Container.BindInterfacesAndSelfTo<StartButtonListener>().FromInstance(startButtonListener).AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<StartButtonListener>().AsSingle().WithArguments(startButton).NonLazy();
             Container.BindInterfacesAndSelfTo<CharacterDeathObserver>().AsSingle().NonLazy();
         }
     }
