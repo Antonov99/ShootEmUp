@@ -1,29 +1,37 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using System;
+using System.Threading.Tasks;
+using Zenject;
 
 namespace ShootEmUp
 {
-    public class EnemyCooldownSpawner : MonoBehaviour
+    public class EnemyCooldownSpawner: IInitializable,IDisposable
     {
-        [SerializeField] private EnemyManager enemyManager;
-        [SerializeField] private float countdown;
+        private EnemyManager enemyManager;
+        private const int countdown = 2000;
+        private bool spawning=true;
 
-        public void OnEnable()
+        [Inject]
+        public void Construct(EnemyManager enemyManager)
         {
-            StartCoroutine(nameof(StartSpawn));
+            this.enemyManager = enemyManager;
         }
 
-        public void OnDisable()
+        public void Initialize()
         {
-            StopCoroutine(nameof(StartSpawn));
+            StartEnemySpawnAsync();
         }
 
-        private IEnumerator StartSpawn()
+        public void Dispose()
         {
-            while (true)
+            spawning = false;
+        }
+
+        private async Task StartEnemySpawnAsync()
+        {
+            while (spawning)
             {
-                yield return new WaitForSeconds(countdown);
                 enemyManager.SpawnEnemy();
+                await Task.Delay(countdown);
             }
         }
     }

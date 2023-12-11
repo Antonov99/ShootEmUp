@@ -1,13 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace ShootEmUp
 {
-    public sealed class EnemyManager : MonoBehaviour
+    public sealed class EnemyManager
     {
-        [SerializeField] private EnemyPool enemyPool;
-
+        private EnemyPool enemyPool;
         private readonly HashSet<GameObject> activeEnemies = new();
+
+        [Inject]
+        public void Construct(EnemyPool enemyPool)
+        {
+            this.enemyPool = enemyPool;
+        }
 
         public void SpawnEnemy()
         {

@@ -10,7 +10,7 @@ namespace ShootEmUp
         [SerializeField] private Bullet prefab;
         [SerializeField] private Transform worldTransform;
 
-        [SerializeField] private const uint initialCount = 50;
+        private const uint initialCount = 50;
 
         private readonly Queue<Bullet> bulletPool = new();
 
