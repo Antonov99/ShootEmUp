@@ -5,7 +5,6 @@ using Zenject;
 namespace ShootEmUp
 {
     public class CharacterMoveController : IInitializable, IDisposable
-
     {
         private GameObject character;
         private InputSystem inputSystem;
